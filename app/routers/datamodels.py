@@ -1,8 +1,8 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-class GetWrongWordIndex(BaseModel):
+class GetInputText(BaseModel):
     text: str = Field(
-        ..., example="I wrk as an AI Engineer"
+        ..., example="This is an example sentence"
     )
 

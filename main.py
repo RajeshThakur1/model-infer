@@ -7,7 +7,7 @@ This module defines below usecases:
 """
 
 __version__ = "v1.0"
-__author__ = "rajesh@twiq.club"
+__author__ = "rajeshthakur1r@gmail.com"
 
 import time
 from fastapi import FastAPI, Request

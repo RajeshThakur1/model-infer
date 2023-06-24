@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends
 from fastapi.security.api_key import APIKey
 from app.middlewares.auth_apikey import get_api_key
 from app.utilities import twiq_logger
-from app.services.get_index.get_incorrect_word_index import GetWrongTextIndex
+from app.services.get_index.get_incorrect_word_index import GetRandomArray
 from app.routers import datamodels
-wrong_word_index = GetWrongTextIndex()
+random_array = GetRandomArray()
 
 logger = twiq_logger.TwiqLogger(
     twiq_logger.get_logger(__name__), {"model_inference": "v1"}
@@ -26,10 +26,10 @@ async def health_check():
     return {"message": "Status = Healthy"}
 
 
-@router.post("/get_wrong_word_index")
+@router.post("/get_random_array")
 async def get_wrong_word_index(
-    input: datamodels.GetWrongWordIndex, api_key: APIKey = Depends(get_api_key)
+    input: datamodels.GetInputText, api_key: APIKey = Depends(get_api_key)
 ):
     text = input.text
-    resp = wrong_word_index.get_wrong_word_index(text)
+    resp = random_array.generate_random_array(text)
     return {"status_code": 200, "message": "EXTRACTED", "data": resp}
